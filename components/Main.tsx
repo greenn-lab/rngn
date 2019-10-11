@@ -34,6 +34,19 @@ const App: React.FC<Props> = ({ navigation }) => {
           navigation.navigate('Authentications')
         }}
       />
+
+      <Button
+        type={'outline'}
+        title={'send confirm email'}
+        onPress={() => {
+          const user: FirebaseAuthTypes.User = auth()
+          .currentUser as FirebaseAuthTypes.User
+
+          user.sendEmailVerification()
+            .throw((reason: any) => console.log('sendEmailVerification::', reason))
+        }}
+      />
+
     </Container>
   )
 }
